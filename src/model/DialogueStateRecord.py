@@ -1,7 +1,7 @@
 from sqlalchemy import String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
-from models.base import Base
+from model.base import Base
 
 
 class DialogueStateRecord(Base):

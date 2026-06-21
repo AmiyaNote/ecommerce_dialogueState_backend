@@ -4,7 +4,7 @@ from sqlalchemy.dialects.mysql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from domain.state import DialogueState
-from models.DialogueStateRecord import DialogueStateRecord
+from model.DialogueStateRecord import DialogueStateRecord
 
 
 class DialogueStateRepository:

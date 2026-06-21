@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from api.routers.chat_router import chat_router
 from client.mysql_client import init_db_engine, close_db_engine
 from conf.load_env import env_config
-from models.DialogueStateRecord import DialogueStateRecord  # noqa: F401
+from model.DialogueStateRecord import DialogueStateRecord  # noqa: F401
 
 
 @asynccontextmanager
