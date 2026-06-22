@@ -19,6 +19,7 @@ async def lifespan(app: FastAPI):
     init_db_engine()
     yield  # FASTAPI 处理请求....
     await close_db_engine()  # 应用关闭的时候才执行到
+    print("服务器已关闭")
 
 
 app = FastAPI(title="Ecommerce Dialogue State Backend", lifespan=lifespan)
@@ -31,6 +32,29 @@ async def health() -> dict[str, str]:
 
 
 if __name__ == "__main__":
+    """
+    测试地址：
+        http://localhost:18082/api/chat
+    测试数据：   
+        {
+          "sender_id": "user_001",
+          "message_id": "msg_001",
+          "text": "这件商品有黑色的吗？",
+          "object": {
+            "type": "item",
+            "id": "sku_10001",
+            "title": "男士休闲夹克",
+            "attributes": {
+              "brand": "UNIQLO",
+              "color": "蓝色",
+              "size": "L",
+              "price": 299,
+              "category": "外套"
+            }
+          }
+        }
+
+    """
     import uvicorn
 
     uvicorn.run("main:app", host=env_config['APP_HOST'], port=int(env_config['APP_PORT']), reload=True)
