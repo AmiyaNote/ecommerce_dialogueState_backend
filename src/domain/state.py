@@ -103,7 +103,7 @@ class DialogueState(BaseModel):
         self.focused_object = None
         self.paused_tasks = []
 
-    # ========turn=========
+    # ========plan=========
     def begin_turn(self, message: UserMessage):
         self.pending_turn = Turn(
             turn_id=str(uuid.uuid4()),

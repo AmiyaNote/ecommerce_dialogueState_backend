@@ -57,4 +57,4 @@ if __name__ == "__main__":
     """
     import uvicorn
 
-    uvicorn.run("main:app", host=env_config['APP_HOST'], port=int(env_config['APP_PORT']), reload=True)
+    uvicorn.run("main:app", host=env_config['APP_HOST'], port=int(env_config['APP_PORT']), reload=False)
