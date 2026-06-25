@@ -3,7 +3,7 @@ from typing import List
 
 from pydantic import BaseModel
 
-from channel.task.links import FlowStepLink, StaticLink, ConditionalLink, FallbackLink
+from channel.task.flow.links import FlowStepLink, StaticLink, ConditionalLink, FallbackLink
 
 
 #

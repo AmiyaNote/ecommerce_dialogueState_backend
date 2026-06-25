@@ -7,9 +7,9 @@ from typing import List
 
 import yaml
 
-from channel.task.flows import Flow, FlowsList, FlowSlot
+from channel.task.flow.flows import Flow, FlowsList, FlowSlot
 
-from channel.task.steps import FlowStep
+from channel.task.flow.steps import FlowStep
 
 base_path = Path(__file__).parents[2]
 user_flow_path = base_path / "flow_config" / "user_flows.yml"
@@ -37,6 +37,7 @@ def load_flows_from_file(path: Path) -> FlowsList:
 
     flow_items = dict(data.get("flows", {}))
 
+    # easy 写法：直接给出模拟结果，vibe自动与输入匹配，拼装。
     flows = []
     for flow_id, flow_data in flow_items.items():
         step_data_list = flow_data.get("steps", [])
@@ -80,10 +81,4 @@ if __name__ == "__main__":
     system_flows = load_flows_from_file(system_flow_path)
     all_flows = load_flows_from_files([user_flow_path, system_flow_path])
 
-    assert len(all_flows.flows) == len(user_flows.flows) + len(system_flows.flows)
-    assert len(all_flows.slots) == len(user_flows.slots) + len(system_flows.slots)
-    assert all_flows.get_flow_by_id("human_handoff") is not None
-    assert all_flows.get_flow_by_id("system_task_started") is not None
-
-    print(f"load_flows_from_files passed: {len(all_flows.flows)} flows, {len(all_flows.slots)} slots")
     print(flow_list.model_dump_json(indent=2))

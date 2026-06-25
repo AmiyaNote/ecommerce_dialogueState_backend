@@ -6,7 +6,8 @@ from pydantic import BaseModel, Field
 
 from pydantic import BaseModel
 
-from channel.task.command import Command
+from channel.task.command.command import Command
+
 
 
 class TaskTurnPlan(BaseModel):

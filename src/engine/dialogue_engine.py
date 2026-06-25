@@ -2,8 +2,6 @@ import time
 
 from channel.knowledge.knowledge_handler import KnowledgeHandler
 from channel.task.task_handler import TaskHandler
-import conf.load_yml
-from channel.task.flows import FlowsList
 from domain.message import UserMessage, ProcessResult, BotMessage, MessageType
 from domain.state import DialogueState
 from plan.turn_models import TurnPlan
@@ -117,3 +115,11 @@ class DialogueEngine:
         # TODO: 实现turn_plan的校验合法性，然后澄清。
 
         # 3. 根据turn_plan,进行不同handler任务执行
+        if turn_plan.task is not None:
+            return await self.task_handler.handle(state=state, commands=turn_plan.task.commands)
+        elif turn_plan.knowledge is not None:
+            return await self.knowledge_handler.handle(state, turn_plan.knowledge.intents)
+        else:
+            return await self.chit_chat_handler.handle(state)
+
+    

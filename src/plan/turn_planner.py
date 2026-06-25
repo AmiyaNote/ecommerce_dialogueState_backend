@@ -5,7 +5,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 
 from channel.knowledge.knowledge_intent import KnowledgeIntent
-from channel.task.flows import Flow, FlowsList
+from channel.task.flow.flows import Flow, FlowsList
 from client.llm import llm
 from domain.message import UserMessage, MessageType
 from domain.state import DialogueState
@@ -106,7 +106,7 @@ if __name__ == '__main__':
         )
         state.current_session().turns.append(history_turn)
 
-        state.start_task(
+        state.start_active_task(
             TaskContext(
                 flow_id="order_status_query",
                 step_id="ask_order_number",

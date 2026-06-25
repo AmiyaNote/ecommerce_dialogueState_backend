@@ -2,7 +2,7 @@ from typing import List, Dict
 
 from pydantic import BaseModel
 
-from channel.task.steps import FlowStep, StartFlowStep
+from channel.task.flow.steps import FlowStep, StartFlowStep
 
 
 class FlowSlot(BaseModel):
